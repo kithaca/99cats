@@ -1,11 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
 <h2><%= "#{@cat.name}!!" %></h2>
 
 <body>
 
-<!-- <table>
+<table>
   <tr>
-      <td> -->
+      <td><strong>Sex</strong></td>
+      <td><strong>Age</strong></td>
+      <td><strong>Color</strong></td>
+      <td><strong>Description</strong></td>
+  </tr>
+  <tr>
+      <td><%=@cat.sex%></td>
+      <td><%=@cat.age%></td>
+      <td><%=@cat.color%></td>
+      <td><%=@cat.description%></td>
+  </tr>
 
-<%= @cat.inspect %></body>
+</table>
+
 <br><br>
-<a href="<%= cats_url%>">  Back to index. </a>
+
+<a href="<%=edit_cat_url(@cat)%>">Edit this cat!</a>
+
+<!-- <a href"<%#=destroy_cat_url%>">Remove cat from the database.</a> -->
+
+<br><br>
+<a href="<%=cats_url%>">Back to index.</a>
+
+</body>
+
+</html>

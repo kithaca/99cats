@@ -1,0 +1,45 @@
+<% http_method = (@cat.persisted? ? "patch" : "post") %>
+<% @cat.persisted? ? url_method = cat_url(@cat) : url_method = cats_url %>
+
+<form action="<%=url_method%>" method="post">
+
+  <input type="hidden" name="_method" value="<%= http_method %>">
+
+  <label for="cat_name">Cat Name</label>
+  <input type="text" id="cat_name" name="cat[name]" value="<%=@cat.name%>">
+
+  <br><br>
+  <%female = @cat.sex == "F"%>
+  <input type="radio" name="cat[sex]" id = "cat_sex_female" value="F"
+  <%="checked" if female%>>
+  <label for="cat_sex_female">Female</label>
+  <br>
+  <input type="radio" name="cat[sex]" id = "cat_sex_male" value="M"
+  <%="checked" unless female%>>
+  <label for="cat_sex_male">Male</label>
+
+
+  <br><br>
+
+  <label for="cat_color">Color of cat</label>
+  <select name="cat[color]" id="cat_color">
+    <option selected><%=@cat.color%></option>
+    <% Cat::COLORS.each do |color| %>
+      <option value="<%=color%>"><%=color.titlecase%></option>
+    <%end%>
+  </select>
+
+  <br><br>
+
+  <label for="cat_birthday">Cat's birthday</label>
+  <input type="date" id="cat_birthday" name="cat[birth_date]" value="<%=@cat.birth_date%>">
+
+  <br><br>
+
+  <label for="cat_description">Tell us about your cat</label>
+  <input type="textarea" id="cat_description" name="cat[description]" value="<%=@cat.description%>">
+
+  <br><br>
+
+<input type="submit" value="Update cat!">
+</form>

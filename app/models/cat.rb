@@ -6,10 +6,10 @@ class Cat < ActiveRecord::Base
   validates :birth_date, :name, presence: true
   validates :color, presence: true, inclusion: { in: COLORS}
   validates :sex, presence: true, length: { maximum: 1 },
-            inclusion: { in: %w(M F) }
+            inclusion: { in: ['M', 'F'] }
 
   def age
-    today.year - :birth_date.year
+    cat_age = Date.today.year - birth_date.year
   end
 
   def inspect
@@ -17,5 +17,6 @@ class Cat < ActiveRecord::Base
     sex == "M" ? pos_pronoun = "his" : pos_pronoun = "her"
     output = "#{name} the cat! #{pos_pronoun.titlecase} color is #{color}, and #{cat_pronoun} was born on #{birth_date}!!!"
   end
+
 
 end
