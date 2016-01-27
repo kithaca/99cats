@@ -2,7 +2,7 @@
 
 <html>
 
-<h2><%= "#{@cat.name}!!" %></h2>
+<h2><%= "#{@cat.name}" %></h2>
 
 <body>
 
@@ -23,6 +23,19 @@
 </table>
 
 <br><br>
+
+<h3>Existing rental requests:</h3>
+  <%requests = @cat.cat_rental_requests.order(:start_date)%>
+  <%requests.each do |request| %>
+    <ul>
+      <li>
+        <%="Start date: #{request.start_date}"%>
+        <br>
+        <%="End date: #{request.end_date}"%>
+      </li>
+    </ul>
+  <%end%>
+
 
 <a href="<%=edit_cat_url(@cat)%>">Edit this cat!</a>
 

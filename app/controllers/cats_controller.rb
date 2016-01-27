@@ -30,7 +30,6 @@ class CatsController < ApplicationController
     render :show
   end
 
-
   private
 
   def cat_params

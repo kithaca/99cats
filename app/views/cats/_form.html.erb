@@ -1,5 +1,14 @@
-<% http_method = (@cat.persisted? ? "patch" : "post") %>
-<% @cat.persisted? ? url_method = cat_url(@cat) : url_method = cats_url %>
+<%
+  if @cat.persisted?
+    http_method = "patch"
+    url_method = cat_url(@cat)
+    submit_message = "Update cat"
+  else
+    http_method = "post"
+    url_method = cats_url
+    submit_message = "Add cat"
+  end
+%>
 
 <form action="<%=url_method%>" method="post">
 
@@ -9,15 +18,18 @@
   <input type="text" id="cat_name" name="cat[name]" value="<%=@cat.name%>">
 
   <br><br>
+
   <%female = @cat.sex == "F"%>
+
   <input type="radio" name="cat[sex]" id = "cat_sex_female" value="F"
   <%="checked" if female%>>
   <label for="cat_sex_female">Female</label>
+
   <br>
+
   <input type="radio" name="cat[sex]" id = "cat_sex_male" value="M"
   <%="checked" unless female%>>
   <label for="cat_sex_male">Male</label>
-
 
   <br><br>
 
@@ -41,5 +53,5 @@
 
   <br><br>
 
-<input type="submit" value="Update cat!">
+<input type="submit" value="<%=submit_message%>>">
 </form>

@@ -1,5 +1,7 @@
 class Cat < ActiveRecord::Base
 
+  has_many :cat_rental_requests, dependent: :destroy
+
   COLORS = ["white", "black", "brown", "orange", "tortoiseshell",
     "tuxedo", "tabby", "siamese", "gray", "tan"]
 
@@ -10,12 +12,6 @@ class Cat < ActiveRecord::Base
 
   def age
     cat_age = Date.today.year - birth_date.year
-  end
-
-  def inspect
-    sex == "M" ? cat_pronoun = "he" : cat_pronoun = "she"
-    sex == "M" ? pos_pronoun = "his" : pos_pronoun = "her"
-    output = "#{name} the cat! #{pos_pronoun.titlecase} color is #{color}, and #{cat_pronoun} was born on #{birth_date}!!!"
   end
 
 
